@@ -27,6 +27,7 @@ namespace NoteApp
                 return path;
             }
         }
+
         /// <summary>
         /// Метод сериализации
         /// </summary>
@@ -41,6 +42,7 @@ namespace NoteApp
                 serializer.Serialize(writer, project);
             }
         }
+
         /// <summary>
         /// Метод десериализации
         /// </summary>
