@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+
 
 namespace NoteApp
 {
     /// <summary>
-    /// Класс, содержащий методы для сериализации и десериализации
-    /// Содержит свойство задания стандартного пути файла
+    /// Класс, содержащий методы для сериализации и десериализации.
+    /// Содержит свойство задания стандартного пути файла.
     /// </summary>
     public static class ProjectManager
     {
         /// <summary>
-        /// Возвращает стандартный путь файла
+        /// Возвращает стандартный путь файла.
         /// </summary>
         public static string DefaultPath
         {
@@ -23,41 +21,62 @@ namespace NoteApp
             {
                 var appDataFolder =
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var path = appDataFolder + @"\NoteApp\Note.json";
+                var path = appDataFolder + @"\Vysokikh\NoteApp\Note.json";
                 return path;
             }
         }
 
         /// <summary>
-        /// Метод сериализации
+        /// Метод сериализации.
         /// </summary>
-        /// <param name="project">список заметок</param>
-        /// <param name="filePath">путь файла</param>
+        /// <param name="project">Список заметок.</param>
+        /// <param name="filePath">Путь файла.</param>
         public static void SaveToFile(Project project, string filePath)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(DefaultPath))
-            using (JsonWriter writer = new JsonTextWriter(sw))
+            var directoryFile = Path.GetDirectoryName(filePath);
+            DirectoryInfo directoryInfo = new DirectoryInfo(directoryFile);
+            if (!Directory.Exists(directoryFile))
             {
-                serializer.Serialize(writer, project);
+                directoryInfo.Create();
+            }
+
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, project);
+                }
             }
         }
-
         /// <summary>
-        /// Метод десериализации
+        /// Метод десериализации.
         /// </summary>
-        /// <param name="filePath">путь файла</param>
+        /// <param name="filename">Имя файла.</param>
         /// <returns></returns>
-        public static Project LoadFromFile(string filePath)
+        public static Project LoadFromFile(string filename)
         {
-            Project project = null;
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader sr = new StreamReader(DefaultPath))
-            using (JsonReader reader = new JsonTextReader(sr))
+            //TODO :: исключение на возврат пустого проекта
+            try
             {
-                project = serializer.Deserialize<Project>(reader);
+                if (!File.Exists(filename))
+                {
+                    Project emptyProject = new Project();
+                    return emptyProject;
+                }
+                var project = new Project();
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamReader sr = new StreamReader(filename))
+                using (JsonReader reader = new JsonTextReader(sr))
+                {
+                    project = serializer.Deserialize<Project>(reader);
+                }
+                return project;
             }
-            return project;
+            catch(Exception exception)
+            {
+                return new Project();
+            }
         }
     }
 }

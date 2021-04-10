@@ -1,43 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace NoteApp
 {
-    public class Note:ICloneable
+    /// <summary>
+    /// Класс заметки, хранящий информацию об имени, категории,
+    /// тексте, времени создания и времени последнего изменения заметки.
+    /// </summary>
+    public class Note : ICloneable
     {
         /// <summary>
-        /// Имя заметки
+        /// Имя заметки.
         /// </summary>
         private string _name;
         
         /// <summary>
-        /// Категория заметки
+        /// Категория заметки.
         /// </summary>
         private NoteCategory _category;
 
         /// <summary>
-        /// Текст заметки
+        /// Текст заметки.
         /// </summary>
         private string _text;
 
         /// <summary>
-        /// Время создания заметки
+        /// Время создания заметки.
         /// </summary>
-        private DateTime _timeCreation;
+        private DateTime _timeCreated;
 
         /// <summary>
-        /// Время последнего изменения заметки
+        /// Время последнего изменения заметки.
         /// </summary>
-        private DateTime _timeLastChange;
+        private DateTime _timeModified;
 
 
         /// <summary>
         /// Задает и возвращает имя заметки, выполняет проверку на количество символов. 
-        /// Если поле ввода пустое, задает имя Untitled
-        /// При изменении имени меняет время последнего изменения заметки
+        /// Если поле ввода пустое, задает имя Untitled.
+        /// При изменении имени меняет время последнего изменения заметки.
         /// </summary>
         public string Name
         {
@@ -57,13 +58,13 @@ namespace NoteApp
                     throw new ArgumentException("Note title exceeds 50 characters");
                 }
                 _name = value;
-                TimeLastChange = DateTime.Now;
+                TimeModified = DateTime.Now;
             }
         }
         
         /// <summary>
         /// Задает и возвращает категорию заметки.
-        /// При смене категории меняет время последнего изменения заметки
+        /// При смене категории меняет время последнего изменения заметки.
         /// </summary>
         public NoteCategory Category 
         { 
@@ -74,13 +75,13 @@ namespace NoteApp
             set
             {
                 _category = value;
-                TimeLastChange = DateTime.Now;
+                TimeModified = DateTime.Now;
             }
         }
 
         /// <summary>
         /// Задает и возвращает текст заметки.
-        /// При изменении текста меняет время последнего изменения заметки
+        /// При изменении текста меняет время последнего изменения заметки.
         /// </summary>
         public string Text
         {
@@ -91,62 +92,84 @@ namespace NoteApp
             set
             {
                 _text = value;
-                TimeLastChange = DateTime.Now;
+                TimeModified = DateTime.Now;
             }
         }
 
         /// <summary>
-        /// Задает и возвращает время создания заметки
+        /// Задает и возвращает время создания заметки.
         /// </summary>
-        public DateTime TimeCreation
+        public DateTime TimeCreated
         {
             get
             {
-                return _timeCreation;
+                return _timeCreated;
             }
             private set 
             {
-                _timeCreation = DateTime.Now;
+                _timeCreated = DateTime.Now;
             }
         }
 
         /// <summary>
-        /// Задает и возвращает время последнего изменения заметки
+        /// Задает и возвращает время последнего изменения заметки.
         /// </summary>
-        public DateTime TimeLastChange
+        public DateTime TimeModified
         {
             get
             {
-                return _timeLastChange;
+                return _timeModified;
             }
             set
             {
-                _timeLastChange = DateTime.Now;
+                _timeModified = DateTime.Now;
             }
         }
 
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        /// <param name="name">имя заметки</param>
-        /// <param name="category">категория заметки</param>
-        /// <param name="text">текст заметки</param>
+        /// <param name="name">Имя заметки.</param>
+        /// <param name="category">Категория заметки.</param>
+        /// <param name="text">Текст заметки.</param>
         public Note(string name, NoteCategory category, string text)
         {
             Name = name;
             Category = category;
             Text = text;
-            TimeCreation = DateTime.Now;
-            TimeLastChange = DateTime.Now;
         }
-
+        
         /// <summary>
-        /// Реализация интерфейска ICloneable
+        /// Приватный конструктор класса, задающий время
+        /// </summary>
+        /// <param name="name">Имя заметкию</param>
+        /// <param name="category">Категория заметки.</param>
+        /// <param name="text">Текст заметки.</param>
+        /// <param name="timeCreated">Время создания заметки.</param>
+        /// <param name="timeModified">Время изменения заметки</param>
+        private Note(string name, NoteCategory category, string text, DateTime timeCreated, DateTime timeModified)
+        {
+            Name = name;
+            Category = category;
+            Text = text;
+            TimeCreated = timeCreated;
+            TimeModified = timeModified;
+        }
+        
+        /// <summary>
+        /// Реализация интерфейса ICloneable
         /// </summary>
         /// <returns></returns>
         public object Clone()
         {
-            return new Note(Name, Category, Text);
+            return new Note(Name, Category, Text, TimeCreated, TimeModified)
+            {
+                Name = this.Name,
+                Category = this.Category,
+                Text = this.Text,
+                TimeCreated = this.TimeCreated,
+                TimeModified = this.TimeModified
+            };
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp;
+
 
 namespace NoteAppUI
 {
@@ -18,14 +16,13 @@ namespace NoteAppUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form());
-            Note note = new Note("", NoteCategory.Home, "buy toilet paper!!1");
+            Note note = new Note("", NoteCategory.Home, "shopping list: ");
             Project project = new Project();
-            project.List.Add(note);
-            ProjectManager.SaveToFile(project, "");
-            Console.WriteLine(note.Name);
+            project.Notes.Add(note);
+            ProjectManager.SaveToFile(project, ProjectManager.DefaultPath);
             Project load = new Project();
             load = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
-            load.List[0].Name = "kek";
+            load.Notes[0].Name = "Buylist";
             load = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
         }
     }
