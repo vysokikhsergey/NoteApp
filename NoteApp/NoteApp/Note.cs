@@ -105,7 +105,7 @@ namespace NoteApp
             {
                 return _timeCreated;
             }
-            private set 
+            set 
             {
                 _timeCreated = DateTime.Now;
             }

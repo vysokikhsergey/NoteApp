@@ -30,10 +30,27 @@ namespace NoteAppUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            NoteNameLabel.Text = "";
+            CategorySelectedLabel.Text = "";
             _notes = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
             FillNoteListBox();
         }
 
-       
+        private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (NoteListBox.SelectedIndex == -1)
+            {
+                NoteNameLabel.Text = "";
+                CategorySelectedLabel.Text = "";
+                return;
+            }
+            int index = NoteListBox.SelectedIndex;
+            var note = _notes.Notes[index];
+            NoteNameLabel.Text = note.Name;
+            CategorySelectedLabel.Text = note.Category.ToString();
+            CreatedTimePicker.Value = note.TimeCreated;
+            ModifiedTimePicker.Value = note.TimeModified;
+            NoteTextBox.Text = note.Text;
+        }
     }
 }
