@@ -45,7 +45,7 @@ namespace NoteAppUI
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Location = new System.Drawing.Point(13, 13);
+            this.TitleLabel.Location = new System.Drawing.Point(12, 9);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(39, 17);
             this.TitleLabel.TabIndex = 0;
@@ -54,7 +54,7 @@ namespace NoteAppUI
             // CategoryLabel
             // 
             this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(16, 43);
+            this.CategoryLabel.Location = new System.Drawing.Point(12, 37);
             this.CategoryLabel.Name = "CategoryLabel";
             this.CategoryLabel.Size = new System.Drawing.Size(69, 17);
             this.CategoryLabel.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace NoteAppUI
             // CreatedLabel
             // 
             this.CreatedLabel.AutoSize = true;
-            this.CreatedLabel.Location = new System.Drawing.Point(16, 74);
+            this.CreatedLabel.Location = new System.Drawing.Point(12, 66);
             this.CreatedLabel.Name = "CreatedLabel";
             this.CreatedLabel.Size = new System.Drawing.Size(62, 17);
             this.CreatedLabel.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace NoteAppUI
             // ModifiedLabel
             // 
             this.ModifiedLabel.AutoSize = true;
-            this.ModifiedLabel.Location = new System.Drawing.Point(287, 74);
+            this.ModifiedLabel.Location = new System.Drawing.Point(244, 66);
             this.ModifiedLabel.Name = "ModifiedLabel";
             this.ModifiedLabel.Size = new System.Drawing.Size(65, 17);
             this.ModifiedLabel.TabIndex = 3;
@@ -80,67 +80,72 @@ namespace NoteAppUI
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Location = new System.Drawing.Point(68, 12);
+            this.TitleTextBox.Location = new System.Drawing.Point(87, 6);
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(715, 22);
+            this.TitleTextBox.Size = new System.Drawing.Size(537, 22);
             this.TitleTextBox.TabIndex = 4;
             // 
             // NoteCategoryComboBox
             // 
             this.NoteCategoryComboBox.FormattingEnabled = true;
-            this.NoteCategoryComboBox.Location = new System.Drawing.Point(92, 43);
+            this.NoteCategoryComboBox.Location = new System.Drawing.Point(87, 34);
             this.NoteCategoryComboBox.Name = "NoteCategoryComboBox";
-            this.NoteCategoryComboBox.Size = new System.Drawing.Size(121, 24);
+            this.NoteCategoryComboBox.Size = new System.Drawing.Size(139, 24);
             this.NoteCategoryComboBox.TabIndex = 5;
+            this.NoteCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.NoteCategoryComboBox_SelectedIndexChanged);
             // 
             // CreatedTimePicker
             // 
+            this.CreatedTimePicker.Enabled = false;
             this.CreatedTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.CreatedTimePicker.Location = new System.Drawing.Point(92, 74);
+            this.CreatedTimePicker.Location = new System.Drawing.Point(87, 64);
             this.CreatedTimePicker.Name = "CreatedTimePicker";
-            this.CreatedTimePicker.Size = new System.Drawing.Size(121, 22);
+            this.CreatedTimePicker.Size = new System.Drawing.Size(139, 22);
             this.CreatedTimePicker.TabIndex = 6;
             // 
             // ModifiedTimePicker
             // 
+            this.ModifiedTimePicker.Enabled = false;
             this.ModifiedTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ModifiedTimePicker.Location = new System.Drawing.Point(359, 73);
+            this.ModifiedTimePicker.Location = new System.Drawing.Point(315, 64);
             this.ModifiedTimePicker.Name = "ModifiedTimePicker";
-            this.ModifiedTimePicker.Size = new System.Drawing.Size(114, 22);
+            this.ModifiedTimePicker.Size = new System.Drawing.Size(121, 22);
             this.ModifiedTimePicker.TabIndex = 7;
             // 
             // TextBox
             // 
-            this.TextBox.Location = new System.Drawing.Point(16, 102);
+            this.TextBox.Location = new System.Drawing.Point(12, 92);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBox.Size = new System.Drawing.Size(772, 336);
+            this.TextBox.Size = new System.Drawing.Size(612, 359);
             this.TextBox.TabIndex = 8;
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(602, 458);
+            this.OKButton.Location = new System.Drawing.Point(458, 457);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.Size = new System.Drawing.Size(80, 24);
             this.OKButton.TabIndex = 9;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(708, 458);
+            this.CancelButton.Location = new System.Drawing.Point(544, 457);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.Size = new System.Drawing.Size(80, 24);
             this.CancelButton.TabIndex = 10;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 493);
+            this.ClientSize = new System.Drawing.Size(636, 483);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.TextBox);
@@ -152,7 +157,11 @@ namespace NoteAppUI
             this.Controls.Add(this.CreatedLabel);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.TitleLabel);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(654, 530);
+            this.MinimumSize = new System.Drawing.Size(654, 530);
             this.Name = "NoteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Note";
             this.ResumeLayout(false);
             this.PerformLayout();

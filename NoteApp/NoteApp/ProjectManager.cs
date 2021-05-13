@@ -56,7 +56,6 @@ namespace NoteApp
         /// <returns></returns>
         public static Project LoadFromFile(string filename)
         {
-            //TODO :: исключение на возврат пустого проекта
             try
             {
                 if (!File.Exists(filename))

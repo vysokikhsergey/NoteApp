@@ -13,7 +13,7 @@ namespace NoteApp
         /// Имя заметки.
         /// </summary>
         private string _name;
-        
+
         /// <summary>
         /// Категория заметки.
         /// </summary>
@@ -46,7 +46,7 @@ namespace NoteApp
             {
                 return _name;
             }
-            set 
+            set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -61,13 +61,13 @@ namespace NoteApp
                 TimeModified = DateTime.Now;
             }
         }
-        
+
         /// <summary>
         /// Задает и возвращает категорию заметки.
         /// При смене категории меняет время последнего изменения заметки.
         /// </summary>
-        public NoteCategory Category 
-        { 
+        public NoteCategory Category
+        {
             get
             {
                 return _category;
@@ -105,7 +105,7 @@ namespace NoteApp
             {
                 return _timeCreated;
             }
-            set 
+            set
             {
                 _timeCreated = DateTime.Now;
             }
@@ -124,6 +124,14 @@ namespace NoteApp
             {
                 _timeModified = DateTime.Now;
             }
+        }
+
+        /// <summary>
+        /// Конструктор класса без параметров
+        /// </summary>
+        public Note()
+        {
+
         }
 
         /// <summary>

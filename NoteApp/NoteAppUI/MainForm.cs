@@ -36,6 +36,29 @@ namespace NoteAppUI
             FillNoteListBox();
         }
 
+        private void AddNote()
+        {
+            var addNote = new NoteForm();
+            addNote.ShowDialog();
+            if (addNote.DialogResult == DialogResult.OK)
+            {
+                var newNote = addNote.Note;
+                _notes.Notes.Add(newNote);
+                NoteListBox.Items.Add(newNote.Name);
+                ProjectManager.SaveToFile(_notes, ProjectManager.DefaultPath);
+            }
+        }
+
+        private void EditNote()
+        {
+
+        }
+
+        private void RemoveNote()
+        {
+
+        }
+
         private void NoteListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (NoteListBox.SelectedIndex == -1)
@@ -51,6 +74,11 @@ namespace NoteAppUI
             CreatedTimePicker.Value = note.TimeCreated;
             ModifiedTimePicker.Value = note.TimeModified;
             NoteTextBox.Text = note.Text;
+        }
+
+        private void AddNoteButton_Click(object sender, EventArgs e)
+        {
+            AddNote();
         }
     }
 }
