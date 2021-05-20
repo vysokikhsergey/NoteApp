@@ -13,6 +13,19 @@ namespace NoteAppUI
 {
     public partial class NoteForm : Form
     {
+        /// <summary>
+        /// Константа цвета некорректного ввода
+        /// </summary>
+        private readonly Color _incorrectInputColor = Color.LightSalmon;
+        
+        /// <summary>
+        /// Константа цвета корректного ввода
+        /// </summary>
+        private readonly Color _correctInputColor = Color.White;
+        
+        /// <summary>
+        /// Поле, хранящее заметку
+        /// </summary>
         private Note _note = new Note();
 
         public NoteForm()
@@ -24,6 +37,9 @@ namespace NoteAppUI
             }
         }
 
+        /// <summary>
+        /// Свойство создания или редактирования заметки
+        /// </summary>
         public Note Note
         {
             get 
@@ -84,6 +100,19 @@ namespace NoteAppUI
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void TitleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Note.Name = TitleTextBox.Text;
+                TitleTextBox.BackColor = _correctInputColor;
+            }
+            catch (ArgumentException exception)
+            {
+                TitleTextBox.BackColor = _incorrectInputColor;
+            }
         }
     }
 }

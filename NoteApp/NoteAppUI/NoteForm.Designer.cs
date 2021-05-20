@@ -84,6 +84,7 @@ namespace NoteAppUI
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(537, 22);
             this.TitleTextBox.TabIndex = 4;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // NoteCategoryComboBox
             // 
