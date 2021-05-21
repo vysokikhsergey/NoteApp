@@ -43,7 +43,7 @@ namespace NoteAppUI
             // 
             this.NoteAppLabel.AutoSize = true;
             this.NoteAppLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NoteAppLabel.Location = new System.Drawing.Point(12, 9);
+            this.NoteAppLabel.Location = new System.Drawing.Point(10, 9);
             this.NoteAppLabel.Name = "NoteAppLabel";
             this.NoteAppLabel.Size = new System.Drawing.Size(118, 29);
             this.NoteAppLabel.TabIndex = 0;
