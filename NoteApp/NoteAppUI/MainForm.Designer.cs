@@ -66,6 +66,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -90,9 +91,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.NoteNameLabel);
             this.splitContainer1.Panel2.Controls.Add(this.NoteTextBox);
             this.splitContainer1.Size = new System.Drawing.Size(862, 476);
-            this.splitContainer1.SplitterDistance = 288;
+            this.splitContainer1.SplitterDistance = 215;
             this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // NoteCategoryComboBox
             // 
@@ -154,14 +154,13 @@
             // 
             // NoteListBox
             // 
-            this.NoteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NoteListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteListBox.FormattingEnabled = true;
             this.NoteListBox.ItemHeight = 16;
             this.NoteListBox.Location = new System.Drawing.Point(3, 75);
             this.NoteListBox.Name = "NoteListBox";
-            this.NoteListBox.Size = new System.Drawing.Size(280, 372);
+            this.NoteListBox.Size = new System.Drawing.Size(282, 372);
             this.NoteListBox.TabIndex = 0;
             this.NoteListBox.SelectedIndexChanged += new System.EventHandler(this.NoteListBox_SelectedIndexChanged);
             this.NoteListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoteListBox_KeyDown);
@@ -175,7 +174,7 @@
             this.HelpToolStripMenu});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(288, 30);
+            this.MenuStrip1.Size = new System.Drawing.Size(215, 28);
             this.MenuStrip1.TabIndex = 6;
             this.MenuStrip1.Text = "menuStrip1";
             // 
@@ -314,7 +313,7 @@
             this.NoteTextBox.Name = "NoteTextBox";
             this.NoteTextBox.ReadOnly = true;
             this.NoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.NoteTextBox.Size = new System.Drawing.Size(558, 346);
+            this.NoteTextBox.Size = new System.Drawing.Size(631, 346);
             this.NoteTextBox.TabIndex = 0;
             // 
             // MainForm
