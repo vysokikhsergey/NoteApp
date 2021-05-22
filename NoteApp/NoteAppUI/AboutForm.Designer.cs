@@ -29,6 +29,7 @@ namespace NoteAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.NoteAppLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.AuthorLabel = new System.Windows.Forms.Label();
@@ -127,6 +128,7 @@ namespace NoteAppUI
             this.Controls.Add(this.AuthorLabel);
             this.Controls.Add(this.VersionLabel);
             this.Controls.Add(this.NoteAppLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(381, 327);
             this.MinimumSize = new System.Drawing.Size(381, 327);

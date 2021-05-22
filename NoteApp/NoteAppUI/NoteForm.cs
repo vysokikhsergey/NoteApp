@@ -34,6 +34,7 @@ namespace NoteAppUI
             foreach (var item in Enum.GetValues(typeof(NoteCategory)))
             {
                 NoteCategoryComboBox.Items.Add(item);
+                NoteCategoryComboBox.SelectedItem = NoteCategory.Documents;
             }
         }
 

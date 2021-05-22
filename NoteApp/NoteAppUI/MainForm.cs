@@ -16,7 +16,7 @@ namespace NoteAppUI
         /// <summary>
         /// Список всех заметок
         /// </summary>
-        private Project _notes = new Project();
+        private Project _project = new Project();
         
         /// <summary>
         /// Метод заполнения NoteListBox
@@ -24,16 +24,16 @@ namespace NoteAppUI
         private void FillNoteListBox()
         {
             NoteListBox.Items.Clear();
-            for (int i = 0; i < _notes.Notes.Count; i++)
+            for (int i = 0; i < _project.Notes.Count; i++)
             {
-                NoteListBox.Items.Add(_notes.Notes[i].Name);
+                NoteListBox.Items.Add(_project.Notes[i].Name);
             }
         }
 
         public MainForm()
         {
             InitializeComponent();
-            _notes = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
             foreach (var item in Enum.GetValues(typeof(NoteCategory)))
             {
                 NoteCategoryComboBox.Items.Add(item);
@@ -44,7 +44,7 @@ namespace NoteAppUI
         {
             NoteNameLabel.Text = "";
             CategorySelectedLabel.Text = "";
-            _notes = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
             FillNoteListBox();
         }
 
@@ -68,10 +68,10 @@ namespace NoteAppUI
             if (addNote.DialogResult == DialogResult.OK)
             {
                 var newNote = addNote.Note;
-                _notes.Notes.Add(newNote);
+                _project.Notes.Add(newNote);
                 NoteListBox.Items.Add(newNote.Name);
-                ProjectManager.SaveToFile(_notes, ProjectManager.DefaultPath);
                 NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
+                ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
         }
 
@@ -85,19 +85,19 @@ namespace NoteAppUI
                 return;
             }
             var indexNote = NoteListBox.SelectedIndex;
-            var selectedData = _notes.Notes[indexNote];
+            var selectedData = _project.Notes[indexNote];
             var editNote = new NoteForm();
             editNote.Note = selectedData;
             editNote.ShowDialog();
             if (editNote.DialogResult == DialogResult.OK)
             {
                 var updatedNote = editNote.Note;
-                _notes.Notes.RemoveAt(indexNote);
-                _notes.Notes.Add(updatedNote);
+                _project.Notes.RemoveAt(indexNote);
+                _project.Notes.Add(updatedNote);
                 NoteListBox.Items.RemoveAt(indexNote);
                 NoteListBox.Items.Add(updatedNote.Name);
-                ProjectManager.SaveToFile(_notes, ProjectManager.DefaultPath);
                 NoteListBox.SelectedIndex = NoteListBox.Items.Count - 1;
+                ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             }
         }
        
@@ -111,7 +111,7 @@ namespace NoteAppUI
                 return;
             }
             var indexNote = NoteListBox.SelectedIndex;
-            var selectedData = _notes.Notes[indexNote];
+            var selectedData = _project.Notes[indexNote];
             var dialogResult = MessageBox.Show
                 (
                 "Do you really want to remove this note: " + selectedData.Name,
@@ -123,9 +123,9 @@ namespace NoteAppUI
             {
                 return;
             }
-            _notes.Notes.RemoveAt(indexNote);
+            _project.Notes.RemoveAt(indexNote);
             NoteListBox.Items.RemoveAt(indexNote);
-            ProjectManager.SaveToFile(_notes, ProjectManager.DefaultPath);
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             ClearMainFormData();
         }
 
@@ -138,7 +138,7 @@ namespace NoteAppUI
                 return;
             }
             int index = NoteListBox.SelectedIndex;
-            var note = _notes.Notes[index];
+            var note = _project.Notes[index];
             NoteNameLabel.Text = note.Name;
             CategorySelectedLabel.Text = note.Category.ToString();
             CreatedTimePicker.Value = note.TimeCreated;
@@ -163,7 +163,7 @@ namespace NoteAppUI
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ProjectManager.SaveToFile(_notes, ProjectManager.DefaultPath);
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,7 +194,6 @@ namespace NoteAppUI
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            //не работает((
             if (e.KeyCode == Keys.F1)
             {
                 var aboutForm = new AboutForm();
